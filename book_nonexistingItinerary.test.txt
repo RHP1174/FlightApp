@@ -1,0 +1,18 @@
+# Check that the system handles a non existing flight itinerary correctly
+
+# commands to execute:
+create test1 password 1000
+login test1 password
+search "Seattle WA" "Honolulu HI" 1 5 1
+book 2
+quit
+*
+
+# expected user output:
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 327 minutes
+ID: 706204 Day: 5 Carrier: AS Number: 853 Origin: Seattle WA Dest: Honolulu HI Duration: 327 Capacity: 17 Price: 658
+No such itinerary 2
+Goodbye
+*

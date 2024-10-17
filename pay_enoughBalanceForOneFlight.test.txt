@@ -1,0 +1,27 @@
+# Check that the system handles a user only having enough balance to pay for 1 flight.
+
+# commands to execute:
+create test password 1000
+login test password
+search "Seattle WA" "Honolulu HI" 1 5 1
+book 0
+pay 1
+search "Honolulu HI" "Seattle WA" 1 11 1
+book 0
+pay 2
+quit
+*
+
+# expected user output:
+Created user test
+Logged in as test
+Itinerary 0: 1 flight(s), 327 minutes
+ID: 706204 Day: 5 Carrier: AS Number: 853 Origin: Seattle WA Dest: Honolulu HI Duration: 327 Capacity: 17 Price: 658
+Booked flight(s), reservation ID: 1
+Paid reservation: 1 remaining balance: 342
+Itinerary 0: 1 flight(s), 299 minutes
+ID: 232021 Day: 11 Carrier: HA Number: 22 Origin: Honolulu HI Dest: Seattle WA Duration: 299 Capacity: 17 Price: 652
+Booked flight(s), reservation ID: 2
+User has only 342 in account but itinerary costs 652
+Goodbye
+*

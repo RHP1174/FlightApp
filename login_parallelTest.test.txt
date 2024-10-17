@@ -1,0 +1,40 @@
+# Testing a user trying to login into their account but they have the wrong password.
+# But one of the users uses the password from another user.
+
+# commands to execute:
+create test1 password 100
+login test1 password
+quit
+*
+
+# possible user output:
+Created user test1
+Logged in as test1
+Goodbye
+|
+
+# second possible output for second terminal:
+Failed to create user
+Logged in as test1
+Goodbye
+*
+
+##################### Terminal #2: #####################
+
+# commands to execute:
+create test1 password 100
+login test1 pass
+quit
+*
+
+# possible user output:
+Failed to create user
+Login failed
+Goodbye
+|
+
+# second possible output for second terminal:
+Created user test1
+Login failed
+Goodbye
+*

@@ -1,0 +1,11 @@
+# Verify that a user cannot login without creating an account first.
+
+# commands to execute:
+login test1 password
+quit
+*
+
+# expected output:
+Login failed
+Goodbye
+*

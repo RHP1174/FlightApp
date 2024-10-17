@@ -1,0 +1,28 @@
+# Test that if a user books multiple flights, they show up in their reservations.
+
+# commands to execute:
+create test1 password 1000
+login test1 password
+search "Seattle WA" "Boston MA" 1 1 1
+book 0
+search "Boston MA" "Seattle WA" 1 5 1
+book 0
+reservations
+quit
+*
+
+# expected user output:
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+Booked flight(s), reservation ID: 1
+Itinerary 0: 1 flight(s), 350 minutes
+ID: 721177 Day: 5 Carrier: B6 Number: 1607 Origin: Boston MA Dest: Seattle WA Duration: 350 Capacity: 13 Price: 799
+Booked flight(s), reservation ID: 2
+Reservation 1 paid: false:
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+Reservation 2 paid: false:
+ID: 721177 Day: 5 Carrier: B6 Number: 1607 Origin: Boston MA Dest: Seattle WA Duration: 350 Capacity: 13 Price: 799
+Goodbye
+*

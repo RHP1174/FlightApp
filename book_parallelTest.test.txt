@@ -1,0 +1,88 @@
+# Testing that 2 users trying to book a flight with capacity of 1.
+# 1 user will be able to book while the other will not.
+
+# commands executed in the first terminal:
+create test1 password 1000
+login test1 password
+search "Seattle WA" "Boston MA" 1 15 5
+book 3
+quit
+*
+
+# one of two possible outputs in the first terminal:
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 308 minutes
+ID: 730445 Day: 15 Carrier: B6 Number: 498 Origin: Seattle WA Dest: Boston MA Duration: 308 Capacity: 12 Price: 523
+Itinerary 1: 1 flight(s), 314 minutes
+ID: 60468 Day: 15 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 314 Capacity: 3 Price: 552
+Itinerary 2: 1 flight(s), 315 minutes
+ID: 60122 Day: 15 Carrier: AS Number: 12 Origin: Seattle WA Dest: Boston MA Duration: 315 Capacity: 0 Price: 528
+Itinerary 3: 1 flight(s), 322 minutes
+ID: 711653 Day: 15 Carrier: AS Number: 12 Origin: Seattle WA Dest: Boston MA Duration: 322 Capacity: 1 Price: 303
+Itinerary 4: 1 flight(s), 323 minutes
+ID: 708996 Day: 15 Carrier: AS Number: 734 Origin: Seattle WA Dest: Boston MA Duration: 323 Capacity: 0 Price: 521
+Booked flight(s), reservation ID: 1
+Goodbye
+|
+
+# second possible output for the first terminal:
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 308 minutes
+ID: 730445 Day: 15 Carrier: B6 Number: 498 Origin: Seattle WA Dest: Boston MA Duration: 308 Capacity: 12 Price: 523
+Itinerary 1: 1 flight(s), 314 minutes
+ID: 60468 Day: 15 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 314 Capacity: 3 Price: 552
+Itinerary 2: 1 flight(s), 315 minutes
+ID: 60122 Day: 15 Carrier: AS Number: 12 Origin: Seattle WA Dest: Boston MA Duration: 315 Capacity: 0 Price: 528
+Itinerary 3: 1 flight(s), 322 minutes
+ID: 711653 Day: 15 Carrier: AS Number: 12 Origin: Seattle WA Dest: Boston MA Duration: 322 Capacity: 1 Price: 303
+Itinerary 4: 1 flight(s), 323 minutes
+ID: 708996 Day: 15 Carrier: AS Number: 734 Origin: Seattle WA Dest: Boston MA Duration: 323 Capacity: 0 Price: 521
+Booking failed
+Goodbye
+*
+
+##################### Concurrently executed commands: #####################
+
+# commands that *a separate user* (user2) is executing in a different terminal:
+create test2 password 1000
+login test2 password
+search "Seattle WA" "Boston MA" 1 15 5
+book 3
+quit
+*
+
+# possible output for second terminal:
+Created user test2
+Logged in as test2
+Itinerary 0: 1 flight(s), 308 minutes
+ID: 730445 Day: 15 Carrier: B6 Number: 498 Origin: Seattle WA Dest: Boston MA Duration: 308 Capacity: 12 Price: 523
+Itinerary 1: 1 flight(s), 314 minutes
+ID: 60468 Day: 15 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 314 Capacity: 3 Price: 552
+Itinerary 2: 1 flight(s), 315 minutes
+ID: 60122 Day: 15 Carrier: AS Number: 12 Origin: Seattle WA Dest: Boston MA Duration: 315 Capacity: 0 Price: 528
+Itinerary 3: 1 flight(s), 322 minutes
+ID: 711653 Day: 15 Carrier: AS Number: 12 Origin: Seattle WA Dest: Boston MA Duration: 322 Capacity: 1 Price: 303
+Itinerary 4: 1 flight(s), 323 minutes
+ID: 708996 Day: 15 Carrier: AS Number: 734 Origin: Seattle WA Dest: Boston MA Duration: 323 Capacity: 0 Price: 521
+Booking failed
+Goodbye
+|
+
+# second possible output for second terminal:
+Created user test2
+Logged in as test2
+Itinerary 0: 1 flight(s), 308 minutes
+ID: 730445 Day: 15 Carrier: B6 Number: 498 Origin: Seattle WA Dest: Boston MA Duration: 308 Capacity: 12 Price: 523
+Itinerary 1: 1 flight(s), 314 minutes
+ID: 60468 Day: 15 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 314 Capacity: 3 Price: 552
+Itinerary 2: 1 flight(s), 315 minutes
+ID: 60122 Day: 15 Carrier: AS Number: 12 Origin: Seattle WA Dest: Boston MA Duration: 315 Capacity: 0 Price: 528
+Itinerary 3: 1 flight(s), 322 minutes
+ID: 711653 Day: 15 Carrier: AS Number: 12 Origin: Seattle WA Dest: Boston MA Duration: 322 Capacity: 1 Price: 303
+Itinerary 4: 1 flight(s), 323 minutes
+ID: 708996 Day: 15 Carrier: AS Number: 734 Origin: Seattle WA Dest: Boston MA Duration: 323 Capacity: 0 Price: 521
+Booked flight(s), reservation ID: 1
+Goodbye
+*

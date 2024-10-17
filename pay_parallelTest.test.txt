@@ -1,0 +1,61 @@
+# Testing that a user cannot book and pay for the same flight twice.
+
+# commands/input for terminal 1:
+create test1 password 1000
+login test1 password
+search "Seattle WA" "Boston MA" 1 1 1
+book 0
+pay 1
+quit
+*
+
+# expected output:
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+Booked flight(s), reservation ID: 1
+Paid reservation: 1 remaining balance: 860
+Goodbye
+|
+
+# second possible output for second terminal:
+Failed to create user
+Logged in as test1
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+You cannot book two flights in the same day
+Cannot find unpaid reservation 1 under user: test1
+Goodbye
+*
+
+##################### Terminal 2: #####################
+
+# commands/input:
+create test1 password 1000
+login test1 password
+search "Seattle WA" "Boston MA" 1 1 1
+book 0
+pay 1
+quit
+*
+
+# expected output:
+Failed to create user
+Logged in as test1
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+You cannot book two flights in the same day
+Cannot find unpaid reservation 1 under user: test1
+Goodbye
+|
+
+# second possible output for second terminal:
+Created user test1
+Logged in as test1
+Itinerary 0: 1 flight(s), 297 minutes
+ID: 60454 Day: 1 Carrier: AS Number: 24 Origin: Seattle WA Dest: Boston MA Duration: 297 Capacity: 14 Price: 140
+Booked flight(s), reservation ID: 1
+Paid reservation: 1 remaining balance: 860
+Goodbye
+*

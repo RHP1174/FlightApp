@@ -1,0 +1,14 @@
+# Verify that a user cannot create an account with a balance of 0.
+# Then test that they can create an account with a balance of 1.
+
+# commands to execute:
+create test3 password 0
+create test4 password 1
+quit
+*
+
+# expected output:
+Failed to create user
+Created user test4
+Goodbye
+*

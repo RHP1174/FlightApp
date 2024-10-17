@@ -1,0 +1,11 @@
+# Verify that the system handles a flights search with a location that does not exist.
+
+# commands to execute:
+search "Seattle WA" "Nowhere WA" 1 1 1
+quit
+*
+
+# expected user output:
+No flights match your selection
+Goodbye
+*

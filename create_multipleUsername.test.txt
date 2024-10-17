@@ -1,0 +1,13 @@
+# Verify that a user cannot create the same account username twice. 
+
+# commands to execute:
+create test1 password 100
+create test1 password 100
+quit
+*
+
+# expected output:
+Created user test1
+Failed to create user
+Goodbye
+*

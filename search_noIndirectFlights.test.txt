@@ -1,0 +1,13 @@
+# Verify that the system handles an indirect flights search with no matching flights
+
+# commands to execute:
+create test1 password 1000
+search "Seattle WA" "Nowhere US" 0 20 5
+quit
+*
+
+# expected user output:
+Created user test1
+No flights available with your selection
+Goodbye
+*
